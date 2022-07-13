@@ -26,6 +26,12 @@ function process(e){
 	var ext = e.getExt().toLowerCase();
 	var mime = e.getMediaType().toString();
 	
+	/*get DARKWEB:FileIsMessageAttach property
+	 * isDWAttach will be NULL for non-attachments and will be set to true for attachments
+	 */
+	var metadata = e.getMetadata();
+	var isDWAttach = metadata.get("DARKWEB:FileIsMessageAttach");
+	
 	if(/.*(-delta|-flat|-(f|s)[0-9]{3})\.vmdk/i.test(e.getName())){
 	    e.setMediaTypeStr("application/x-vmdk-data");
 	}
@@ -402,6 +408,10 @@ function process(e){
 		}
 	}
 	
+	//item is a DARKWEB file attachment
+	if(isDWAttach){
+		e.addCategory("Attachments");
+	}
 }
 
 

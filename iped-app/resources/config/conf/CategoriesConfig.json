@@ -1,7 +1,15 @@
 {
   "name": "Categories",
   "categories":[
-    {"name": "Documents", "categories":[
+    {"name": "DarkWeb Intelligence", "categories":[
+	  {"name": "Database", "mimes": ["application/x-darkweb-db"]},
+      {"name": "Sites", "mimes": ["application/x-darkweb-site"]},
+      {"name": "Profiles", "mimes": ["application/x-darkweb-profile"]},
+	  {"name": "Topics", "mimes": ["application/x-darkweb-topic"]},
+	  {"name": "Messages", "mimes": ["application/x-darkweb-message"]},
+	  {"name": "Attachments", "mimes": ["application/x-darkweb-attachment"]}
+    ]},
+	{"name": "Documents", "categories":[
       {"name": "RTF Documents", "mimes": ["application/rtf"]},
       {"name": "PDF Documents", "mimes": ["application/pdf"]},
       {"name": "HTML Documents", "mimes": ["text/html", "application/xhtml+xml", "application/vnd.wap.xhtml+xml", "application/x-asp", "text/asp", "text/aspdotnet"]},

@@ -599,7 +599,9 @@ public class MetadataUtil {
             if (generalKeys.contains(key) || key.toLowerCase().startsWith(prefix.toLowerCase())
                     || key.startsWith(ExtraProperties.UFED_META_PREFIX)
                     || key.startsWith(ExtraProperties.COMMON_META_PREFIX)
-                    || key.startsWith(TikaCoreProperties.TIKA_META_PREFIX))
+                    || key.startsWith(TikaCoreProperties.TIKA_META_PREFIX)
+                    || key.startsWith(ExtraProperties.COMMUNICATION_PREFIX)
+                    || key.startsWith(ExtraProperties.DARKWEB_PREFIX))
                 continue;
             String[] values = metadata.getValues(key);
             metadata.remove(key);

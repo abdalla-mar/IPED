@@ -20,7 +20,9 @@
 <properties>
 
     <parsers>
-        <parser class="iped.parsers.external.CompositeExternalParser"></parser>
+        
+		<parser class="iped.parsers.darkweb.DarkWebParser"></parser>
+		<parser class="iped.parsers.external.CompositeExternalParser"></parser>
         
         <parser class="org.apache.tika.parser.apple.AppleSingleFileParser"></parser>
         <parser class="org.apache.tika.parser.apple.PListParser"></parser>

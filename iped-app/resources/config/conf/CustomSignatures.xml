@@ -19,6 +19,11 @@
 -->
 <mime-info>
 
+	<mime-type type="application/x-darkweb-db">
+        <sub-class-of type="application/x-sqlite3"/>
+		<glob pattern="DARKWEB.db"/>
+    </mime-type>
+
 	<mime-type type="application/x-vnd.corel.zcf.draw.document+zip">
         <glob pattern="*.CDR"/>
         <sub-class-of type="application/zip"/>
