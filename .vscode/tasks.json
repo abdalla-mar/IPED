@@ -1,0 +1,56 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "run IPED home",
+            "type": "process",
+            "command": "C:\\TOOLS\\_IPED-4.0.0-beta\\iped-4.0.0-beta\\copy parser and run - Casa.bat",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "run IPED work",
+            "type": "process",
+            "command": "C:\\_IPED-4.0.0-beta\\iped-4.0.0-beta\\copy parser and run - Trabalho.bat",
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "type": "java",
+            "targetPath": "${workspaceFolder}/${workspaceFolderBasename}.jar",
+            "elements": [
+                "${compileOutput:iped-ahocorasick}",
+                "${dependencies:iped-ahocorasick}",
+                "${compileOutput:iped-api}",
+                "${dependencies:iped-api}",
+                "${compileOutput:iped-app}",
+                "${dependencies:iped-app}",
+                "${compileOutput:iped-carvers-api}",
+                "${dependencies:iped-carvers-api}",
+                "${compileOutput:iped-carvers-impl}",
+                "${dependencies:iped-carvers-impl}",
+                "${compileOutput:iped-engine}",
+                "${dependencies:iped-engine}",
+                "${compileOutput:iped-geo}",
+                "${dependencies:iped-geo}",
+                "${compileOutput:iped-parsers-impl}",
+                "${dependencies:iped-parsers-impl}",
+                "${compileOutput:iped-utils}",
+                "${dependencies:iped-utils}",
+                "${compileOutput:iped-viewers-api}",
+                "${dependencies:iped-viewers-api}",
+                "${compileOutput:iped-viewers-impl}",
+                "${dependencies:iped-viewers-impl}",
+                "${compileOutput:java-dbf}",
+                "${dependencies:java-dbf}"
+            ],
+            "problemMatcher": [],
+            "label": "java: exportjar:IPED"
+        }
+    ]
+}
