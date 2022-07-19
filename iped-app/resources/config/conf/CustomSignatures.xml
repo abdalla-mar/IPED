@@ -24,6 +24,26 @@
 		<glob pattern="DARKWEB.db"/>
     </mime-type>
 
+    <mime-type type="application/x-darkweb-site">
+        <sub-class-of type="text/html"/>
+    </mime-type>
+	
+	<mime-type type="application/x-darkweb-profile">
+        <sub-class-of type="text/html"/>
+    </mime-type>
+	
+	<mime-type type="application/x-darkweb-topic">
+        <sub-class-of type="text/html"/>
+    </mime-type>
+	
+	<mime-type type="application/x-darkweb-message">
+        <sub-class-of type="text/html"/>
+    </mime-type>
+	
+	<mime-type type="application/x-darkweb-attachment">
+        <sub-class-of type="text/html"/>
+    </mime-type>
+
 	<mime-type type="application/x-vnd.corel.zcf.draw.document+zip">
         <glob pattern="*.CDR"/>
         <sub-class-of type="application/zip"/>
