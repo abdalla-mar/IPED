@@ -32,6 +32,9 @@ import javax.swing.event.ChangeListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.jhlabs.image.BoxBlurFilter;
+import com.jhlabs.image.GrayscaleFilter;
+
 import iped.data.IItemReader;
 import iped.io.IStreamSource;
 import iped.io.SeekableInputStream;
@@ -66,10 +69,14 @@ public class ImageViewer extends AbstractViewer implements ActionListener {
     private static final String actionCopyImage = "copy-image";
 
     private static final int maxDim = 2400;
+    private static final int thumbSize = 160;
     
     volatile protected BufferedImage image;
     volatile protected int rotation;
 
+    private GrayscaleFilter grayFilter;
+    private BoxBlurFilter blurFilter;
+        
     public ImageViewer() {
         this(0);
     }
@@ -78,9 +85,23 @@ public class ImageViewer extends AbstractViewer implements ActionListener {
         super(new BorderLayout());
         isToolbarVisible = true;
         imagePanel = new ImageViewPanel(initialFitMode);
+        grayFilter = new GrayscaleFilter();
+        blurFilter = new BoxBlurFilter(14,14,1);
         createToolBar();
         getPanel().add(imagePanel, BorderLayout.CENTER);
         getPanel().add(toolBar, BorderLayout.NORTH);
+    }
+
+    @Override
+    public void setBlurRadius(float radius){
+        this.blurRadius = radius;
+        blurFilter.setRadius(radius);
+    }
+
+    @Override
+    public void setBlurIterations(int iterations){
+        this.blurIterations = iterations;
+        blurFilter.setIterations(iterations);
     }
 
     @Override
@@ -112,18 +133,27 @@ public class ImageViewer extends AbstractViewer implements ActionListener {
                 String mimeType = content instanceof IItemReader
                         ? MediaTypes.getMimeTypeIfJBIG2((IItemReader) content)
                         : null;
-                image = ImageUtil.getSubSampledImage(in, maxDim, maxDim, mimeType);
+                //image = ImageUtil.getSubSampledImage(in, maxDim, maxDim, mimeType);
 
+                //NEW OPTIMIZER
+                int size = maxDim;
+                if (applyBlurFilter)
+                    size = thumbSize;
+                    
+                image = ImageUtil.getSubSampledImage(in, size, size, mimeType);
+                //NEW OPTIMIZER
+                
                 if (image == null) {
                     IOUtil.closeQuietly(in);
                     SeekableInputStream sis = content.getSeekableInputStream();
                     in = new BufferedInputStream(sis);
-                    image = externalImageConverter.getImage(in, maxDim, true, sis.size());
+                    //image = externalImageConverter.getImage(in, maxDim, true, sis.size());
+                    image = externalImageConverter.getImage(in, size, !applyBlurFilter, sis.size());
                 }
                 if (image == null) {
                     IOUtil.closeQuietly(in);
                     in = new BufferedInputStream(content.getSeekableInputStream());
-                    image = ImageMetadataUtil.getThumb(in);
+                    image = ImageMetadataUtil.getThumb(in); //get thumbnail from JPG metadata header
                 }
                 if (image != null) {
                     IOUtil.closeQuietly(in);
@@ -153,6 +183,19 @@ public class ImageViewer extends AbstractViewer implements ActionListener {
 
             } finally {
                 IOUtil.closeQuietly(in);
+            }
+        }
+        if (image != null){
+            //LOGGER.info("ImageViewer INSIDE IF image not null"); //$NON-NLS-1$
+            
+            if (applyGrayScaleFilter) {
+                //LOGGER.info("ImageViewer INSIDE IF toggleGrayScaleFilter"); //$NON-NLS-1$
+                image = grayFilter.filter(image, null);    
+            }
+            
+            if (applyBlurFilter) {
+                //LOGGER.info("ImageViewer INSIDE IF toggleBlurFilter"); //$NON-NLS-1$
+                image = blurFilter.filter(image, null);
             }
         }
         toolBar.setVisible(image != null && isToolbarVisible());
