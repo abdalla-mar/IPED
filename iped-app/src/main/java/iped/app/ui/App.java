@@ -174,7 +174,7 @@ public class App extends JFrame implements WindowListener, IMultiSearchResultPro
     JButton searchButton, optionsButton, updateCaseData, helpButton, exportToZip;
     //
     JButton blurButton;
-    JSlider sliderBlur;
+    //JSlider sliderBlur;
     JButton grayButton;
     //
     JCheckBox checkBox, recursiveTreeList, filterDuplicates;
@@ -471,10 +471,10 @@ public class App extends JFrame implements WindowListener, IMultiSearchResultPro
         //
         blurButton = new JButton(Messages.getString("App.ToggleBlurFilter"), IconUtil.getToolbarIcon("blur", resPath));
         blurButton.setMnemonic(KeyEvent.VK_B);
-        sliderBlur = new JSlider(SwingConstants.HORIZONTAL, 0, 20, 14);
+        /* sliderBlur = new JSlider(SwingConstants.HORIZONTAL, 0, 20, 14);
         sliderBlur.setMaximumSize(new Dimension(5, 16));
         sliderBlur.setMinimumSize(new Dimension(5, 16));
-        sliderBlur.setOpaque(false);
+        sliderBlur.setOpaque(false); */
         grayButton = new JButton(Messages.getString("App.ToggleGrayScaleFilter"), IconUtil.getToolbarIcon("gray", resPath));
         grayButton.setMnemonic(KeyEvent.VK_G);
         //
@@ -516,7 +516,7 @@ public class App extends JFrame implements WindowListener, IMultiSearchResultPro
         topPanel.add(queryComboBox);
         //
         topPanel.add(blurButton);
-        topPanel.add(sliderBlur);
+        //topPanel.add(sliderBlur);
         topPanel.add(grayButton);
         //
         topPanel.add(optionsButton);
@@ -779,7 +779,7 @@ public class App extends JFrame implements WindowListener, IMultiSearchResultPro
         searchButton.addActionListener(appletListener);
         //
         blurButton.addActionListener(appletListener);
-        sliderBlur.addChangeListener(appletListener);
+        //sliderBlur.addChangeListener(appletListener);
         grayButton.addActionListener(appletListener);
         //
         optionsButton.addActionListener(appletListener);

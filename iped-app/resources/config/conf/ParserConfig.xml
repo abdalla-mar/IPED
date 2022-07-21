@@ -24,6 +24,8 @@
 		<parser class="iped.parsers.darkweb.DarkWebDBParser"></parser>
         <parser class="iped.parsers.darkweb.DarkWebSiteParser"></parser>
         <parser class="iped.parsers.darkweb.DarkWebTopicParser"></parser>
+        <parser class="iped.parsers.darkweb.DarkWebMessageParser"></parser>
+
 		<parser class="iped.parsers.external.CompositeExternalParser"></parser>
         
         <parser class="org.apache.tika.parser.apple.AppleSingleFileParser"></parser>

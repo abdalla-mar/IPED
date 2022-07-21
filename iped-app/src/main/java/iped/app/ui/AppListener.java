@@ -28,8 +28,8 @@ import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.JOptionPane;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+/* import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener; */
 
 import org.apache.lucene.search.Query;
 
@@ -37,7 +37,7 @@ import iped.engine.search.LuceneSearchResult;
 import iped.engine.search.MultiSearchResult;
 import iped.utils.IconUtil;
 
-public class AppListener implements ActionListener, MouseListener, ClearFilterListener, ChangeListener {
+public class AppListener implements ActionListener, MouseListener, ClearFilterListener { //ChangeListener
 
     private String searchText = ""; //$NON-NLS-1$
     private boolean clearAllFilters = false;
@@ -253,7 +253,7 @@ public class AppListener implements ActionListener, MouseListener, ClearFilterLi
         clearAllFilters = false;
     }
 
-    @Override
+    /* @Override
     public void stateChanged(ChangeEvent e){
         if (e.getSource() == App.get().sliderBlur && !App.get().sliderBlur.getValueIsAdjusting()) {
             int radius = App.get().sliderBlur.getValue();
@@ -267,6 +267,6 @@ public class AppListener implements ActionListener, MouseListener, ClearFilterLi
                 App.get().getViewerController().reload();
             }
         }
-    }
+    } */
 
 }
